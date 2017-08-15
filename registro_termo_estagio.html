@@ -1,0 +1,169 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Registro do Termo de Estágio</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="container">
+		<form>
+			<div class="container">
+				<form>
+					<fieldset>
+						<legend>Dados da Empresa Conveniada</legend>
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label for="numero_convenio">Número do Convênio</label>
+								<input type="text" class="form-control" name="numero_convenio" id="numero_convenio">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="cnpj">CNPJ</label>
+								<input type="text" class="form-control" name="cnpj" id="cnpj">
+							</div>
+
+							<div class="form-group col-md-9">
+								<label for="cnpj_empresa_ligada">CNPJ da Empresa Ligada ao Agente de Integração</label>
+								<input type="text" class="form-control" name="cnpj_empresa_ligada" id="cnpj_empresa_ligada">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="razao_social">Razão Social</label>
+								<input type="text" class="form-control" name="razao_social" id="razao_social">
+							</div>
+
+							<div class="form-group col-md-9">
+								<label for="razao_social_empresa_ligada">Razão Social da Empresa Ligada ao Agente de Integração</label>
+								<select class="form-control" name="razao_social_empresa_ligada" id="razao_social_empresa_ligada">
+									<option value="1">Google</option>
+									<option value="2">Facebook</option>
+									<option value="3">Microsoft</option>
+								</select>
+							</div>				
+						</div>
+					</fieldset>
+					<hr />
+					<fieldset>
+						<legend>Dados do Aluno</legend>
+						<div class="row">
+							<div class="form-group col-md-3">
+								<label for="matricula">Matrícula</label>
+								<input type="text" class="form-control" name="matricula" id="matricula">
+							</div>
+
+							<div class="form-group col-md-9">
+								<label for="nome_aluno">Nome</label>
+								<input type="text" class="form-control" name="nome_aluno" id="nome_aluno" disabled="disabled">
+							</div>							
+							<div class="form-group col-md-6">
+								<label for="curso">Curso</label>
+								<input type="text" class="form-control" name="curso" id="curso" disabled="disabled">
+							</div>
+
+							<div class="form-group col-md-6">
+								<label for="unidade">Unidade</label>
+								<input type="text" class="form-control" name="unidade" id="unidade" disabled="disabled">
+							</div>
+						</div>
+					</fieldset>
+					<hr />
+					<fieldset>
+						<legend>Vigência do Estágio</legend>
+						<div class="row">
+							<div class="form-group col-md-3">
+								<label for="data_inicio">Data de Início</label>
+								<input type="date" class="form-control" name="data_inicio" id="data_inicio">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="data_termino">Data de Término</label>
+								<input type="date" class="form-control" name="data_termino" id="data_termino">
+							</div>
+						</div>
+					</fieldset>
+					<hr />
+					<fieldset>
+						<legend>Carga Horária do Aluno</legend>
+						<div class="row">		
+							<div class="form-group col-md-3">
+								<label for="horas_dia">Horas por dia</label>
+								<input type="number" class="form-control" name="horas_dia" id="horas_dia" min="0">
+							</div>
+						</div>
+					</fieldset>
+					<hr />	
+					<fieldset>
+						<legend>Valor da Bolsa de Estágio</legend>
+						<div class="row">			
+							<div class="form-group col-md-3">
+								<label for="valor_bolsa">Valor</label>
+								<input type="number" class="form-control" name="valor_bolsa" id="valor_bolsa" min="0">
+							</div>
+						</div>
+					</fieldset>
+					<hr />
+					<fieldset>
+						<legend>Local do Estágio</legend>
+						<div class="row">						
+							<div class="form-group col-md-9">
+								<label for="endereco">Endereço</label>
+								<input type="text" class="form-control" name="endereco" id="endereco">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="compelemento">Complemento</label>
+								<input type="text" class="form-control" name="compelemento" id="compelemento">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="bairro">Bairro</label>
+								<input type="text" class="form-control" name="bairro" id="bairro">
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="cidade">Cidade</label>
+								<input type="text" class="form-control" name="cidade" id="cidade">
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="estado">Estado</label>
+								<select class="form-control" class="form-control" name="estado" id="estado">
+									<option value="ba">Bahia</option>
+									<option value="pa">Pará</option>
+									<option value="rj">Rio de Janeiro</option>
+									<option value="sp">São Paulo</option>
+								</select>
+							</div>
+
+							<div class="form-group col-md-2">
+								<label for="cep">CEP</label>
+								<input type="text" class="form-control" name="cep" id="cep">
+							</div>
+						</div>
+					</fieldset>
+					<hr />
+					<fieldset>
+						<legend></legend>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="isn_obrigatorio">O Estágio é Obrigatório</label>
+								<p>Sim</p><input type="radio" class="form-control" name="isn_obrigatorio" id="isn_obrigatorio" value="s" checked="checked">
+								<p>Não</p><input type="radio" class="form-control" name="isn_obrigatorio" id="isn_obrigatorio" value="n">
+							</div>
+
+							<div class="form-group col-md-9">
+								<label for="professor_orientador">Professor Orientador</label>
+								<select class="form-control" class="form-control" name="professor_orientador" id="professor_orientador">
+									<option value="ba">Eduardo Bezerra</option>
+									<option value="pa">Diogo Mendonça</option>
+								</select>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>			
+		</form>
+	</div>
+</body>
+</html>
