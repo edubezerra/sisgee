@@ -242,8 +242,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO AgenteIntegracao (cnpjAgenteIntegracao, nomeAgenteIntegracao) VALUES 
-('Abr Vencer R.  Humanos', 8334959000175), 
+INSERT INTO AgenteIntegracao (nomeAgenteIntegracao, cnpjAgenteIntegracao) VALUES 
+('Abr Vencer R. Humanos', 8334959000175), 
 ('Abre  Ag. Brasileira de Estudante Ltda. ', 10329223000183), 
 ('Adepe - Assoc. de Desenv. Da Educ. e Prom. Do Estudante', 9525685000164), 
 ('Afamar – Assessoria RH', 289809000185), 
