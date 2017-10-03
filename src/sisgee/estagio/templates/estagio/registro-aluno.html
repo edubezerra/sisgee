@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Registro do Termo de Estágio</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8">
+</head>
+<body>
+<div class="row">
+    <div class="container"  id="jqImport">
+        <h1>Importar CSV</h1>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="jqLoading alert alert-info hide">Carregando...</div>
+            {% if success %}
+                <div class="alert alert-success">Arquivo Importado com Sucesso!!!</div>
+            {% elif error %}
+                <div class="alert alert-danger">Este arquivo não pode ser importado!!!</div>
+            {% endif %}
+             <form method="post" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {{ form.non_field_errors }}
+                 <div class="form-group">
+                    <label for="{{ form.file.id_for_label }}">{{ form.file.label }}</label>
+                        {% if form.file.errors %}
+                            <div class="alert alert-danger">{{ form.file.errors }}</div>
+                        {% endif %}
+                        {{ form.file }}
+                 </div>
+                 <input  class="jqEnviar btn btn-primary" type="submit" value="Enviar"/>
+             </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script src="js/import.js"></script>
+
