@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema diemp
+-- Schema sisgee
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema diemp
+-- Schema sisgee
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `diemp` DEFAULT CHARACTER SET utf8 ;
-USE `diemp` ;
+CREATE SCHEMA IF NOT EXISTS `sisgee` DEFAULT CHARACTER SET utf8 ;
+USE `sisgee` ;
 
 -- -----------------------------------------------------
--- Table `diemp`.`Campus`
+-- Table `sisgee`.`Campus`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Campus` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Campus` (
   `idCampus` INT NOT NULL,
   `nomeCampus` CHAR(100) NOT NULL,
   PRIMARY KEY (`idCampus`),
@@ -26,9 +26,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`Curso`
+-- Table `sisgee`.`Curso`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Curso` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Curso` (
   `idCurso` INT NOT NULL AUTO_INCREMENT,
   `codigoCurso` VARCHAR(50) NOT NULL,
   `nomeCurso` VARCHAR(255) NOT NULL,
@@ -39,16 +39,16 @@ CREATE TABLE IF NOT EXISTS `diemp`.`Curso` (
   INDEX `fk_Curso_Campus1_idx` (`idCampus` ASC),
   CONSTRAINT `fk_Curso_Campus1`
     FOREIGN KEY (`idCampus`)
-    REFERENCES `diemp`.`Campus` (`idCampus`)
+    REFERENCES `sisgee`.`Campus` (`idCampus`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`Pessoa`
+-- Table `sisgee`.`Pessoa`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Pessoa` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Pessoa` (
   `idPessoa` INT NOT NULL,
   `cpf` CHAR(11) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
@@ -76,10 +76,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`Aluno`
+-- Table `sisgee`.`Aluno`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Aluno` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Aluno` (
   `idAluno` INT NOT NULL AUTO_INCREMENT,
+  `matricula` VARCHAR(100) NOT NULL,
   `situacao` VARCHAR(25) NOT NULL,
   `idCurso` INT NOT NULL,
   `idPessoa` INT NOT NULL,
@@ -87,23 +88,24 @@ CREATE TABLE IF NOT EXISTS `diemp`.`Aluno` (
   INDEX `fk_Aluno_Curso1_idx` (`idCurso` ASC),
   INDEX `fk_Aluno_Pessoa1_idx` (`idPessoa` ASC),
   UNIQUE INDEX `idAluno_UNIQUE` (`idAluno` ASC),
+  UNIQUE INDEX `matricula_UNIQUE` (`matricula` ASC),
   CONSTRAINT `fk_Aluno_Curso1`
     FOREIGN KEY (`idCurso`)
-    REFERENCES `diemp`.`Curso` (`idCurso`)
+    REFERENCES `sisgee`.`Curso` (`idCurso`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Aluno_Pessoa1`
     FOREIGN KEY (`idPessoa`)
-    REFERENCES `diemp`.`Pessoa` (`idPessoa`)
+    REFERENCES `sisgee`.`Pessoa` (`idPessoa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`AgenteIntegracao`
+-- Table `sisgee`.`AgenteIntegracao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`AgenteIntegracao` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`AgenteIntegracao` (
   `idAgenteIntegracao` INT NOT NULL AUTO_INCREMENT,
   `cnpjAgenteIntegracao` CHAR(14) NOT NULL,
   `nomeAgenteIntegracao` VARCHAR(100) NOT NULL,
@@ -114,9 +116,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`Empresa`
+-- Table `sisgee`.`Empresa`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Empresa` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Empresa` (
   `idEmpresa` INT NOT NULL AUTO_INCREMENT,
   `cnpjEmpresa` CHAR(14) NOT NULL,
   `nomeEmpresa` VARCHAR(100) NOT NULL,
@@ -127,16 +129,16 @@ CREATE TABLE IF NOT EXISTS `diemp`.`Empresa` (
   UNIQUE INDEX `idEmpresa_UNIQUE` (`idEmpresa` ASC),
   CONSTRAINT `fk_Empresa_AgenteIntegracao1`
     FOREIGN KEY (`idAgenteIntegracao`)
-    REFERENCES `diemp`.`AgenteIntegracao` (`idAgenteIntegracao`)
+    REFERENCES `sisgee`.`AgenteIntegracao` (`idAgenteIntegracao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`Convenio`
+-- Table `sisgee`.`Convenio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`Convenio` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`Convenio` (
   `idConvenio` INT NOT NULL AUTO_INCREMENT,
   `numeroConvenio` CHAR(10) NOT NULL,
   `dataInicioConvenio` DATE NOT NULL,
@@ -148,16 +150,16 @@ CREATE TABLE IF NOT EXISTS `diemp`.`Convenio` (
   UNIQUE INDEX `idConvenio_UNIQUE` (`idConvenio` ASC),
   CONSTRAINT `fk_Convenio_Empresa1`
     FOREIGN KEY (`idEmpresa`)
-    REFERENCES `diemp`.`Empresa` (`idEmpresa`)
+    REFERENCES `sisgee`.`Empresa` (`idEmpresa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`ProfessorOrientador`
+-- Table `sisgee`.`ProfessorOrientador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`ProfessorOrientador` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`ProfessorOrientador` (
   `idProfessorOrientador` INT NOT NULL AUTO_INCREMENT,
   `nomeProfessorOrientador` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`idProfessorOrientador`),
@@ -166,9 +168,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`TermoEstagio`
+-- Table `sisgee`.`TermoEstagio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`TermoEstagio` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`TermoEstagio` (
   `idTermoEstagio` INT NOT NULL AUTO_INCREMENT,
   `dataInicioTermoEstagio` DATE NOT NULL,
   `dataFimTermoEstagio` DATE NULL,
@@ -194,26 +196,26 @@ CREATE TABLE IF NOT EXISTS `diemp`.`TermoEstagio` (
   UNIQUE INDEX `idTermoEstagio_UNIQUE` (`idTermoEstagio` ASC),
   CONSTRAINT `fk_TermoEstagio_ProfessorOrientador`
     FOREIGN KEY (`idProfessorOrientador`)
-    REFERENCES `diemp`.`ProfessorOrientador` (`idProfessorOrientador`)
+    REFERENCES `sisgee`.`ProfessorOrientador` (`idProfessorOrientador`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_TermoEstagio_Aluno1`
     FOREIGN KEY (`idAluno`)
-    REFERENCES `diemp`.`Aluno` (`idAluno`)
+    REFERENCES `sisgee`.`Aluno` (`idAluno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_TermoEstagio_Convenio1`
     FOREIGN KEY (`idConvenio`)
-    REFERENCES `diemp`.`Convenio` (`idConvenio`)
+    REFERENCES `sisgee`.`Convenio` (`idConvenio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `diemp`.`TermoAditivo`
+-- Table `sisgee`.`TermoAditivo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `diemp`.`TermoAditivo` (
+CREATE TABLE IF NOT EXISTS `sisgee`.`TermoAditivo` (
   `idTermoAditivo` INT NOT NULL,
   `dataFimTermoAditivo` DATE NULL,
   `cargaHorariaTermoAditivo` TINYINT NOT NULL,
@@ -231,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `diemp`.`TermoAditivo` (
   INDEX `fk_TermoAditivo_TermoEstagio1_idx` (`idTermoEstagio` ASC),
   CONSTRAINT `fk_TermoAditivo_TermoEstagio1`
     FOREIGN KEY (`idTermoEstagio`)
-    REFERENCES `diemp`.`TermoEstagio` (`idTermoEstagio`)
+    REFERENCES `sisgee`.`TermoEstagio` (`idTermoEstagio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -242,8 +244,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO AgenteIntegracao (cnpjAgenteIntegracao, nomeAgenteIntegracao) VALUES 
-('Abr Vencer R.  Humanos', 8334959000175), 
+INSERT INTO AgenteIntegracao (nomeAgenteIntegracao, cnpjAgenteIntegracao) VALUES 
+('Abr Vencer R. Humanos', 8334959000175), 
 ('Abre  Ag. Brasileira de Estudante Ltda. ', 10329223000183), 
 ('Adepe - Assoc. de Desenv. Da Educ. e Prom. Do Estudante', 9525685000164), 
 ('Afamar – Assessoria RH', 289809000185), 

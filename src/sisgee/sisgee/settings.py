@@ -76,11 +76,12 @@ WSGI_APPLICATION = 'sisgee.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'mysql_cymysql',
         'NAME': 'sisgee',
         'HOST': 'localhost',
-        'USER': 'postgres',
-        'PASSWORD': 'aluno',
+        'PORT': 3306,
+        'USER': 'diemp',
+        'PASSWORD': '1234',
     }
 }
 
